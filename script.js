@@ -1,63 +1,63 @@
 var myMovies = [
     {
-        title: "The Space Between Us",
-        published: 2017,
-        genre: ["Sci/fi", "Romantik"],
-        actors: ["Asa Butterfield", "Britt Robertson", "Gary Oldman"]
-    },
-    {
-        title: "Harry Potter and The philosopher's stone",
-        published: 2001,
-        genre: ["Fantasy"],
-        actors: ["Daniel Radcliffe", "Emma Watson", "Rupert Grint"]
-    },
-    {
-        title: "Harry Potter and The chamber of secrets",
-        published: 2002,
-        genre: ["Fantasy"],
-        actors: ["Daniel Radcliffe", "Emma Watson", "Rupert Grint"]
-    },
-    {
-        title: "Harry Potter and The prisoner of azkaban",
-        published: 2004,
-        genre: ["Fantasy"],
-        actors: ["Daniel Radcliffe", "Emma Watson", "Rupert Grint"]
-    },
-    {
-        title: "Harry Potter and The Goblet of Fire",
-        published: 2005,
-        genre: ["Fantasy"],
-        actors: ["Daniel Radcliffe", "Emma Watson", "Rupert Grint"]
-    },
-    {
-        title: "Harry Potter and The Order of The Phoenix",
-        published: 2007,
-        genre: ["Fantasy"],
-        actors: ["Daniel Radcliffe", "Emma Watson", "Rupert Grint"]
-    },
-    {
-        title: "Harry Potter and The Half-blood Prince",
-        published: 2009,
-        genre: ["Fantasy"],
-        actors: ["Daniel Radcliffe", "Emma Watson", "Rupert Grint"]
-    },
-    {
-        title: "Harry Potter and The Deathly Hallows: Part 1",
-        published: 2010,
-        genre: ["Fantasy"],
-        actors: ["Daniel Radcliffe", "Emma Watson", "Rupert Grint"]
-    },
-    {
-        title: "Harry Potter and The Deathly Hallows: Part 2",
-        published: 2011,
-        genre: ["Fantasy"],
-        actors: ["Daniel Radcliffe", "Emma Watson", "Rupert Grint"]
-    },
-    {
-        title: "Star Wars The Last Jedi",
+        title: "Iron Man",
         published: 2017,
         genre: ["Sci/fi", "Action"],
-        actors: ["Daisy Ridley", "Mark Hamill", "John Boyega"]
+        actors: ["Robert Downey Jr.", "Jon Favreau", "Gwyneth Paltrow", "Terrence Howard", "Jeff Bridges", "Leslie Bibb", "Paul Bettany"]
+    },
+    {
+        title: "Harry Potter and the Philosopher's Stone",
+        published: 2001,
+        genre: ["Fantasy"],
+        actors: ["Daniel Radcliffe", "Emma Watson", "Rupert Grint", "Alan Rickman", "Robbie Coltrane", "Tom Felton", "Richard Harris"]
+    },
+    {
+        title: "Now You See Me",
+        published: 2013,
+        genre: ["Thriller", "Krimi"],
+        actors: ["Jesse Eisenberg", "Mark Ruffalo", "Woody Harrelson", "Morgan Freeman", "Michael Caine", "Dave Franco", "Isla Lang Fisher"]
+    },
+    {
+        title: "The Hunger Games",
+        published: 2004,
+        genre: ["Sci/fi", "Action"],
+        actors: ["Woody Harrelson", "Lenny Kravitz", "Jennifer Lawrence", "Jackie Evancho", "Josh Hutcherson"]
+    },
+    {
+        title: "Heart of Stone",
+        published: 2023,
+        genre: ["Mysterie"],
+        actors: ["Alia Bhatt", "Gal Gadot", "Jamie Dornan", "Matthias Schweighöfer"]
+    },
+    {
+        title: "Red Notice",
+        published: 2021,
+        genre: ["Action", "Komedie"],
+        actors: ["Gal Gadot", "Ryan Reynolds", "The Rock", "Ritu Arya"]
+    },
+    {
+        title: "Now You See Me 2",
+        published: 2016,
+        genre: ["Eventyr", "Krimi"],
+        actors: ["Jesse Eisenberg", "Mark Ruffalo", "Woody Harrelson", "Morgan Freeman", "Michael Caine", "Dave Franco", "Isla Lang Fisher", "Daniel Radcliffe"]
+    },
+    {
+        title: "Fantastic Beasts",
+        published: 2016,
+        genre: ["Fantasy", "Eventyr"],
+        actors: ["Eddie Redmayne", "Katherine Waterston", "Dan Fogler", "Ezra Miller", "Colin Farrell", "Alison Sudol", "Johnny Depp"]
+    },
+    {
+        title: "Jurassic Park",
+        published: 1993,
+        genre: ["Sci/fi", "Eventyr"],
+        actors: ["Laura Dern", "Jeff Goldblum", "Sam Neill", "Ariana Richards", "Richard Attenborough", "BD Wong", "Joseph Mazzello"]
+    },
+    {
+        title: "Avatar",
+        published: 2009,
+        genre: ["Sci/fi", "Action"],
+        actors: ["Zoë Saldaña", "Sam Worthington", "Sigourney Weaver", "Michelle Rodriguez", "Stephen Lang", "Joel David Moore", "Laz Alonso"]
     }
 ]
 
@@ -94,26 +94,27 @@ function ShowResults(results) {
     
     results.forEach(item => {
         const LI = document.createElement("li")
+        LI.classList = "searchResult__movieResult"
         LI.innerHTML = 
         `
-        <h3>${item.title}</h3>
-        <span>${item.published}</span>
+        <h3 class="searchResult__movieTitle">${item.title}</h3>
+        <span class="searchResult__moviePublished">${item.published}</span>
         <h4>Genre</h4>
-        <ul class="movieGenre"></ul>
+        <ul class="searchResult__movieGenre"></ul>
         <h4>Actors</h4>
-        <ul class="movieActors"></ul>
+        <ul class="searchResult__movieActors"></ul>
         `
         
-        const MOVIE_GENRE = LI.querySelector(".movieGenre")
-        const MOVIE_ACTORS = LI.querySelector(".movieActors")
+        const MOVIE_GENRE = LI.querySelector(".searchResult__movieGenre")
+        const MOVIE_ACTORS = LI.querySelector(".searchResult__movieActors")
         
-        item.genre.forEach(genre => { MOVIE_GENRE.innerHTML += `<li>${genre}</li>`})
+        item.genre.forEach(genre => {
+            MOVIE_GENRE.innerHTML += `<li class="searchResult__movieGenre--${genre.toLowerCase().replace("/f", "F")}">${genre}</li>`
+        })
         
-        item.actors.forEach(actors => { MOVIE_ACTORS.innerHTML += `<li>${actors}</li>`})
+        item.actors.forEach(actors => {MOVIE_ACTORS.innerHTML += `<li>${actors}</li>`})
 
         UL_RESULTS.appendChild(LI)
     });
-    
-    
     
 }
