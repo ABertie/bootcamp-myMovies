@@ -4,8 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My movies</title>
+
+    <!-- script -->
+    <script src="./script.js" defer></script>
+
 </head>
 <body>
-    <script src="./script.js"></script>
+    <form class="searchForm">
+        <label>
+            Søge på en film
+            <input type="search" name="search" class="searchForm__input">
+        </label>
+        <button type="submit">Søg</button>
+    </form>
+
+    <main>
+        <section>
+            <h2>Film</h2>
+            <ul class="searchResult">
+
+            </ul>
+        </section>
+    </main>
 </body>
 </html>

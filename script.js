@@ -60,3 +60,60 @@ var myMovies = [
         actors: ["Daisy Ridley", "Mark Hamill", "John Boyega"]
     }
 ]
+
+const FORM = document.querySelector(".searchForm")
+
+FORM.addEventListener("submit", submitHandler)
+
+function submitHandler(event) {
+    event.preventDefault()
+
+    let searchValue = event.target.search.value
+
+    const RESULTS = myMovies.filter(function(element) {
+        return findInArray(element.title, searchValue)
+        || compare(element.published, searchValue)
+        || findInArray(element.genre.toString(), searchValue)
+        || findInArray(element.actors.toString(), searchValue)
+    })
+
+    ShowResults(RESULTS)
+}
+
+function findInArray(haystack, needle) {
+    return haystack.toLowerCase().includes(needle.toLowerCase())
+}
+
+const compare = (a, b) => a == b
+
+
+function ShowResults(results) {
+    const UL_RESULTS = document.querySelector(".searchResult")
+
+    UL_RESULTS.innerHTML = ""
+    
+    results.forEach(item => {
+        const LI = document.createElement("li")
+        LI.innerHTML = 
+        `
+        <h3>${item.title}</h3>
+        <span>${item.published}</span>
+        <h4>Genre</h4>
+        <ul class="movieGenre"></ul>
+        <h4>Actors</h4>
+        <ul class="movieActors"></ul>
+        `
+        
+        const MOVIE_GENRE = LI.querySelector(".movieGenre")
+        const MOVIE_ACTORS = LI.querySelector(".movieActors")
+        
+        item.genre.forEach(genre => { MOVIE_GENRE.innerHTML += `<li>${genre}</li>`})
+        
+        item.actors.forEach(actors => { MOVIE_ACTORS.innerHTML += `<li>${actors}</li>`})
+
+        UL_RESULTS.appendChild(LI)
+    });
+    
+    
+    
+}
